@@ -1,0 +1,7 @@
+services:
+  missioncontrol:
+      container_name: missioncontrol
+      restart: unless-stopped
+      build: .
+      env_file:
+        - .env
