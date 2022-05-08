@@ -1,0 +1,14 @@
+[package]
+name = "missioncontrol"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+log = "0.4"
+chrono = "0.4"
+fern = { version = "0.6", features = ["colored"] }
+dotenv = "0.15"
+serenity = { version = "0.11", default-features = false, features = ["builder", "cache", "collector", "client", "gateway", "http", "model", "utils", "rustls_backend", "unstable_discord_api"] }
+tokio = { version = "^1", features = ["macros", "rt-multi-thread"] }
+rusqlite = "0.27"
+rusty_ulid = "1.0"
