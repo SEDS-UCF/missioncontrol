@@ -29,11 +29,13 @@ pub const ALLOWED_ROLES: &[RoleId] = &[
 ];
 
 pub const ALLOWED_PROJECTS: &[RoleId] = &[
-	RoleId(787477836171968552), // RASC-AL
-	RoleId(585634734122467339), // IREC
-	RoleId(787478051414867978), // Sojourner
-	RoleId(787478212644962305), // Liquid Bi-Prop
-	RoleId(787478390705487922), // FSGC Hybrids
+	RoleId(787477836171968552),  // RASC-AL
+	RoleId(585634734122467339),  // IREC
+	RoleId(787478051414867978),  // Sojourner
+	RoleId(787478212644962305),  // Liquid Bi-Prop
+	RoleId(787478390705487922),  // FSGC Hybrids
+	RoleId(1017565592229781554), // Rover
+	RoleId(1017839639463207012), // L1 Rocketeer
 ];
 
 pub const MAX_LIST_SIZE: usize = 20;

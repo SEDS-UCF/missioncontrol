@@ -7,7 +7,6 @@ use crate::bot::mc::{MC, Modifications, State, StateProgress};
 
 impl MC {
 	pub fn generate_main_menu<'a, 'b>(&self, d: &'a mut CreateInteractionResponseData<'b>) -> &'a mut CreateInteractionResponseData<'b> {
-		d.content("This code is highly unstable, please report any bugs to <@125812945061019650>!");
 		d.flags(InteractionApplicationCommandCallbackDataFlags::EPHEMERAL);
 
 		d.components(|c| {

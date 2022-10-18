@@ -2,7 +2,7 @@ use serenity::async_trait;
 use serenity::client::{Context, EventHandler};
 use serenity::model::gateway::Ready;
 use serenity::model::id::ChannelId;
-use serenity::model::interactions::application_command::ApplicationCommandOptionType;
+use serenity::model::interactions::application_command::{ApplicationCommand, ApplicationCommandOptionType};
 use serenity::model::interactions::Interaction;
 use serenity::model::interactions::message_component::ButtonStyle;
 
@@ -13,6 +13,10 @@ use crate::bot::config::{GUILD_ID, SEND_INTRO};
 impl EventHandler for Bot {
 	async fn ready(&self, ctx: Context, ready: Ready) {
 		info!("{} is connected!", ready.user.name);
+
+		ApplicationCommand::set_global_application_commands(&ctx.http, |x| {
+			x
+		}).await.unwrap();
 
 		GUILD_ID
 			.set_application_commands(&ctx.http, |commands| {
@@ -37,30 +41,30 @@ impl EventHandler for Bot {
 									.add_string_choice("Friend of SEDS", "friend")
 							})
 					})
-				// .create_application_command(|command| {
-				// 	command
-				// 		.name("join")
-				// 		.description("Join a channel")
-				// 		.create_option(|option| {
-				// 			option
-				// 				.name("channel")
-				// 				.description("The channel to join")
-				// 				.kind(ApplicationCommandOptionType::String)
-				// 				.required(true)
-				// 		})
-				// })
-				// .create_application_command(|command| {
-				// 	command
-				// 		.name("leave")
-				// 		.description("Leave a channel")
-				// 		.create_option(|option| {
-				// 			option
-				// 				.name("channel")
-				// 				.description("The channel to leave")
-				// 				.kind(ApplicationCommandOptionType::Channel)
-				// 				.required(true)
-				// 		})
-				// })
+					.create_application_command(|command| {
+						command
+							.name("join")
+							.description("Join a channel")
+							.create_option(|option| {
+								option
+									.name("channel")
+									.description("The channel to join")
+									.kind(ApplicationCommandOptionType::String)
+									.required(true)
+							})
+					})
+					.create_application_command(|command| {
+						command
+							.name("leave")
+							.description("Leave a channel")
+							.create_option(|option| {
+								option
+									.name("channel")
+									.description("The channel to leave")
+									.kind(ApplicationCommandOptionType::Channel)
+									.required(true)
+							})
+				})
 			})
 			.await.unwrap();
 

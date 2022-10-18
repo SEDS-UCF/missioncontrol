@@ -201,7 +201,7 @@ impl MC {
 				}
 
 				let chans = GUILD_ID.channels(&self.ctx).await.unwrap();
-				let chans = filter_chans(&self.ctx, &chans, CAT_CHANNELS, self.user.id, progress);
+				let chans = filter_chans(&self.ctx, &chans, CAT_CHANNELS, self.user.id, progress, false);
 
 				self.list = chans.iter().map(|x| MenuOption {
 					label: x.name.clone(),
@@ -214,7 +214,7 @@ impl MC {
 				}
 
 				let chans = GUILD_ID.channels(&self.ctx).await.unwrap();
-				let chans = filter_chans(&self.ctx, &chans, CAT_GAMES, self.user.id, progress);
+				let chans = filter_chans(&self.ctx, &chans, CAT_GAMES, self.user.id, progress, false);
 
 				self.list = chans.iter().map(|x| MenuOption {
 					label: x.name.clone(),

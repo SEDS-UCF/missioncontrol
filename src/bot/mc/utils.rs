@@ -16,14 +16,14 @@ pub fn user_in_chan(ctx: &Context, user: UserId, channel: &GuildChannel) -> bool
 		.unwrap_or(false)
 }
 
-pub fn filter_chans<'a>(ctx: &Context, chans: &'a HashMap<ChannelId, GuildChannel>, cat: ChannelId, user: UserId, progress: StateProgress) -> Vec<&'a GuildChannel> {
+pub fn filter_chans<'a>(ctx: &Context, chans: &'a HashMap<ChannelId, GuildChannel>, cat: ChannelId, user: UserId, progress: StateProgress, allow_excluded: bool) -> Vec<&'a GuildChannel> {
 	let mut ret: Vec<_> = chans
 		.values()
 		.filter(|x| {
 			let mut filt = false;
 
 			if let Some(pid) = x.parent_id {
-				if pid == cat && x.kind == ChannelType::Text && !EXCLUDED_CHANNELS.contains(&x.id) {
+				if pid == cat && x.kind == ChannelType::Text && (allow_excluded || !EXCLUDED_CHANNELS.contains(&x.id)) {
 					if progress == StateProgress::Add {
 						filt = !user_in_chan(ctx, user, x);
 					} else if progress == StateProgress::Remove {
